@@ -5,8 +5,25 @@ from openwisp_utils.base import KeyField, TimeStampedEditableModel, UUIDModel
 
 
 class Shelf(TimeStampedEditableModel):
+    JOUNERS = (
+        ('HORROR','HORROR'),
+        ('FANTASY','FANTASY'),
+        ('FACTUAL','FACTUAL'),
+        ('Mystery','Mystery'),
+        ('Historical Fiction','Historical Fiction'),
+        ('Literary Fiction','Literary Fiction'),
+        ('Romance','Romance'),
+        ('Science Fiction','Science Fiction'),
+        ('Short Stories','Short Stories'),
+        ('nse and Thrillers','nse and Thrillers'),
+        ('Biographies','Biographies')
+    )
     name = models.CharField(_('name'), max_length=64)
-
+    jouner = models.CharField(_("Jouner"),choices=JOUNERS,null=True,blank=True, max_length=50)
+    number = models.PositiveIntegerField(_("Number of books"),default=0)
+    locked = models.BooleanField(_("Is locked"),default=True)
+    owner = models.OneToOneField("auth.User", blank=True,null=True, verbose_name=_("Owner of shelf"), on_delete=models.CASCADE)
+    created_at = models.DateTimeField(_("Create at"), null=True,blank=True, auto_now_add=True)
     def __str__(self):
         return self.name
 

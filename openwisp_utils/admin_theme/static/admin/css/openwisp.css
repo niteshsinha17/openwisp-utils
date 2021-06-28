@@ -178,10 +178,12 @@ body.login {
 .login #container {
   box-shadow: 0px 0px 6px #f4f7f6;
 }
-td,th{
+td,
+th {
   padding: 14px 16px;
 }
-#changelist-form .paginator, #main-content #changelist-form .actions{
+#changelist-form .paginator,
+#main-content #changelist-form .actions {
   width: auto;
 }
 
@@ -210,6 +212,8 @@ td,th{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #fff;
+  border-bottom: 1px solid #00000026;
 }
 .menu-toggle {
   background: url(../../ui/openwisp/images/menu.png);
@@ -244,7 +248,7 @@ td,th{
   background: #fff;
   height: 100vh;
   z-index: 100;
-  box-shadow: 0 1px 4px -1px #00000026;
+  box-shadow: 1px 1px 4px -1px #00000026;
   top: 0px;
   left: 0px;
   overflow: hidden;
@@ -267,7 +271,7 @@ td,th{
   background-repeat: no-repeat;
   background-position: center;
   background: url(../../../static/ui/openwisp/images/openwisp-logo-black.svg)
-  no-repeat scroll 0 50%/100%;
+    no-repeat scroll 0 50%/100%;
   text-indent: -2000px;
 }
 .user-tools {
@@ -283,7 +287,7 @@ td,th{
 }
 .user-tools .user {
   background: transparent url(../../ui/openwisp/images/user.png) no-repeat
-  scroll 0 50%;
+    scroll 0 50%;
   background-size: 10px 10px;
   padding-left: 18px;
   cursor: pointer;
@@ -366,6 +370,180 @@ a.menu-link,
   font-weight: 400;
 }
 
+
+/* FILTER */
+
+#changelist .results,
+#changelist .actions,
+#changelist .paginator {
+  margin-right: 0px;
+}
+#ow-changelist-filter {
+  padding: 20px 40px;
+  background: #fff;
+}
+
+#ow-changelist-filter h2,
+#changelist-filter-clear {
+  margin: 0px;
+}
+#changelist-filter-clear {
+  margin-right: 20px;
+}
+.filters-control {
+  display: flex;
+  align-items: center;
+}
+.filters-apply-btn {
+}
+.filters-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filters-bottom {
+  /* display: flex; */
+  height: 50px;
+  margin-top: 20px;
+  /* padding: 20p; */
+  /* overflow-x: overlay; */
+  /* overflow-y: visible; */
+  position: relative;
+  /* padding-top: 37px; */
+}
+
+.filter {
+  margin-right: 10px;
+}
+.filter-options input {
+  display: none;
+  pointer-events: none;
+}
+.filter-options {
+  flex-direction: column;
+  min-width: 180px;
+  margin-top: 16px;
+  border-radius: 8px;
+  background: #ebebeb;
+  max-height: 291px;
+  overflow-y: auto;
+  display: flex;
+  height: 0px;
+  transition-duration: 300ms;
+}
+
+.filter-title {
+  border: 2px solid #a19d9d;
+  border-radius: 8px;
+  padding: 5px 20px 5px 16px;
+  cursor: pointer;
+}
+
+.filter-title h3 {
+  margin: 0px;
+  margin-top: -14px;
+  margin-left: -8px;
+  background: #fff;
+  width: fit-content;
+  padding: 0px 8px;
+  color: #a19d9d;
+  pointer-events: none;
+}
+.selected-option{
+  pointer-events: none;
+}
+.filter-options label{
+  border-radius: 8px;
+  margin-bottom: 2px;
+}
+
+.owFilter {
+  flex-shrink: 0;
+  z-index: 1;
+  margin-right: 20px;
+}
+
+.filter-options label {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.owFilter.active .filter-options{
+  height: auto;
+}
+.filter-options .selected {
+  background: #ef8080;
+  color: #ffff;
+  border-radius: 8px;
+  /* cursor: pointer; */
+  /* display: block; */
+}
+
+.filter-options label:hover {
+  background: #ef8080;
+  color: #ffff;
+}
+
+#ow-apply-filter{
+  background: #EF8080;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 0px;
+  cursor: pointer;
+  font-weight: 700;
+}
+#ow-apply-filte:hover{
+  background: #e45959;
+}
+.owFilterSlider {
+  /* display: flex; */
+  overflow-x: auto;
+  /* margin-top: 10px; */
+  /* margin: 0px 20px; */
+  padding: 10px 0px;
+  margin: 0px 17px;
+  scroll-behavior: smooth;
+  /* padding: 10px 30px; */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.owFilterSlider::-webkit-scrollbar{
+  display: none;
+}
+.slider {
+  display: flex;
+  position: relative;
+  /* padding: 0px 30px; */
+  z-index: 1;
+}
+.left-arrow,.right-arrow {
+  height: 40px;
+  /* background: black; */
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  top: 5px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  transition-timing-function: ease;
+}
+.left-arrow{
+  left: -35px;
+}
+.right-arrow{
+  right: -40px;
+}
+.left-arrow img, .right-arrow img {
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+}
+.down{
+  background: #ccc;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 1024px) {
@@ -398,14 +576,14 @@ a.menu-link,
     overflow-y: scroll;
     overflow-x: hidden;
   }
-  #header{
-    background: #fff;
-  }
   #branding {
     display: block;
   }
   .menu-bar {
     display: none;
+  }
+  #branding #site-name {
+    margin: 0px;
   }
   #branding #site-name a {
     width: 32px;
@@ -420,13 +598,13 @@ a.menu-link,
     background-repeat: no-repeat;
     background-position: center;
     background: url(../../../static/ui/openwisp/images/openwisp-logo-black.svg)
-    no-repeat scroll 0 50%/100%;
+      no-repeat scroll 0 50%/100%;
   }
   #menu {
     margin-left: 0px;
     width: 100%;
     height: 0px;
-    top: 72px;
+    top: 62px;
   }
   .toggle-menu #menu {
     margin: 0px;
@@ -441,7 +619,19 @@ a.menu-link,
     padding: 15px;
   }
   #menu .nav {
-    height: calc(100% - 72px);
+    height: calc(100% - 62px);
+  }
+  #ow-changelist-filter {
+    padding: 15px;
+  }
+  .right-arrow{
+    right: -20px;
+  }
+  .left-arrow{
+    left: -20px;
+  }
+  #ow-apply-filter{
+    padding: 9px 15px;
   }
 }
 

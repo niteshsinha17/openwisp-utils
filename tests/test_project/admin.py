@@ -7,7 +7,15 @@ from openwisp_utils.admin import (
     TimeReadonlyAdminMixin,
     UUIDAdmin,
 )
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
 
+admin.site.unregister(User)
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['username','is_staff','is_superuser','is_active']
+    list_filter = ['username','is_staff','is_superuser','is_active']
 from .models import Operator, Project, RadiusAccounting, Shelf
 
 
@@ -44,4 +52,6 @@ class ProjectAdmin(UUIDAdmin, ReceiveUrlAdmin):
 
 @admin.register(Shelf)
 class ShelfAdmin(TimeReadonlyAdminMixin, admin.ModelAdmin):
-    pass
+    list_filter = ('jouner','name','owner__username','owner__is_staff','owner__is_active',
+    'locked','number','created_at',
+    )
